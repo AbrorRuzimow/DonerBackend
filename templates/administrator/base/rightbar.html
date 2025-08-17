@@ -1,0 +1,50 @@
+<div id="dms_aside" class="app-aside  flex-column " data-kt-drawer="true" data-kt-drawer-name="app-aside"
+     data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="auto"
+     data-kt-drawer-direction="end" data-kt-drawer-toggle="#dms_aside_mobile_toggle">
+    <div id="dms_aside_wrapper"
+         class="d-flex flex-column align-items-center hover-scroll-y mt-lg-n3 py-5 py-lg-0 gap-4" data-kt-scroll="true"
+         data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto"
+         data-kt-scroll-dependencies="#dms_header" data-kt-scroll-wrappers="#dms_aside_wrapper"
+         data-kt-scroll-offset="5px">
+        <a href="{% url 'Administrator:homepage_list' %}"
+           class="btn btn-icon {% if GroupList == request.path or  GroupUpdate == request.path %} btn-color-light  bg-primary{% else %}btn-color-primary bg-hover-body {% endif %} h-45px w-45px flex-shrink-0"
+           data-bs-toggle="tooltip"
+           title="Baş sahypa" data-bs-custom-class="tooltip-inverse">
+             <span class="menu-icon active">
+                <i class="fas fa-dashboard fs-1"></i>
+            </span>
+        </a>
+        <a href="{% url 'Administrator:warehouse_name_list' %}"
+           class="btn btn-icon {% if GroupList == request.path or  GroupUpdate == request.path %} btn-color-light  bg-primary{% else %}btn-color-primary bg-hover-body {% endif %} h-45px w-45px flex-shrink-0"
+           data-bs-toggle="tooltip"
+           title="Ammardaky atlar" data-bs-custom-class="tooltip-inverse">
+             <span class="menu-icon active">
+                <i class="fas fa-clipboard fs-1"></i>
+            </span>
+        </a>
+        <a href="{% url 'Administrator:warehouse_list' %}"
+           class="btn btn-icon {% if GroupList == request.path or  GroupUpdate == request.path %} btn-color-light  bg-primary{% else %}btn-color-primary bg-hover-body {% endif %} h-45px w-45px flex-shrink-0"
+           data-bs-toggle="tooltip"
+           title="Ammar" data-bs-custom-class="tooltip-inverse">
+             <span class="menu-icon active">
+                <i class="fas fa-bag-shopping fs-1"></i>
+            </span>
+        </a>
+        <a href="{% url 'Administrator:product_list' %}"
+           class="btn btn-icon {% if GroupList == request.path or  GroupUpdate == request.path %} btn-color-light  bg-primary{% else %}btn-color-primary bg-hover-body {% endif %} h-45px w-45px flex-shrink-0"
+           data-bs-toggle="tooltip"
+           title="Önümler" data-bs-custom-class="tooltip-inverse">
+             <span class="menu-icon active">
+                <i class="fas fa-store fs-1"></i>
+            </span>
+        </a>
+        <a href="{% url 'Administrator:users_list' %}"
+           class="btn btn-icon {% if GroupList == request.path or  GroupUpdate == request.path %} btn-color-light  bg-primary{% else %}btn-color-primary bg-hover-body {% endif %} h-45px w-45px flex-shrink-0"
+           data-bs-toggle="tooltip"
+           title="Ulayjylar" data-bs-custom-class="tooltip-inverse">
+             <span class="menu-icon active">
+                <i class="fas fa-users fs-1"></i>
+            </span>
+        </a>
+    </div>
+</div>

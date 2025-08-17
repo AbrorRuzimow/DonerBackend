@@ -1,0 +1,147 @@
+{% extends 'app/base/base.html' %}
+{% block content %}
+    <div class="breadcumb-section">
+        <div class="breadcumb-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcumb-content">
+                            <h1 class="breadcumb-title">Sargytdy eltmeli menzil</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="th-checkout-wrapper section-padding fix">
+        <div class="container">
+            <form method="post" class="woocommerce-checkout mt-5">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="col-12 form-group">
+                            <input type="text" class="form-control" name="phone_number" placeholder="Telefon belgini giriziň" value="{% if request.user.is_authenticated %}{{ request.user.phone_number }}{% endif %}" required>
+                        </div>
+                        <div class="col-12 form-group">
+                            <textarea cols="20" rows="5" class="form-control" name="address" placeholder="Salgyny eltip bermeli menzili" required></textarea>
+                        </div>
+                    </div>
+                </div>
+                <h4 class="mt-4 pt-lg-2">Siziň sargytlaryňyz</h4>
+                {% csrf_token %}
+                <table class="cart_table mb-20">
+                    <thead>
+                    <tr>
+                        <th class="cart-col-image">Suraty</th>
+                        <th class="cart-colname">Ady</th>
+                        <th class="cart-col-price">Bahasy</th>
+                        <th class="cart-col-quantity">Mukdary</th>
+                        <th class="cart-col-total">Jemi</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for cart_model in cart_models %}
+                        <tr class="cart_item">
+                            <td data-title="{{ cart_model.product_pk.name }}">
+                                <a class="cartimage" href="#">
+                                    <img width="91" height="91" src="/media/{{ cart_model.image }}" alt="Image">
+                                </a>
+                            </td>
+                            <td data-title="Name">
+                                <a class="cartname" href="#">{{ cart_model.product.name }}</a>
+                            </td>
+                            <td data-title="Price">
+                                <span class="amount">
+                                    <bdi>
+                                        <span>
+                                             {% if cart_model.product.expensive_price %}
+                                                 {{ cart_model.product.expensive_price }}
+                                             {% else %}
+                                                 {{ cart_model.product.price }}
+                                             {% endif %}
+                                        </span>
+                                       TMT
+                                    </bdi>
+                                </span>
+                            </td>
+                            <td data-title="Quantity">
+                                <strong class="product-quantity">{{ cart_model.quantity }}</strong>
+                            </td>
+                            <td data-title="Total">
+                                <span class="amount">
+                                    <bdi>
+                                        <span>
+                                            {{ cart_model.total }}
+                                        </span>
+                                        TMT
+                                    </bdi>
+                                </span>
+                            </td>
+                        </tr>
+                    {% empty %}
+
+                    {% endfor %}
+                    </tbody>
+                    <tfoot class="checkout-ordertable">
+                    <tr class="cart-subtotal">
+                        <th>Sebetdäki harytlaryň bahasy</th>
+                        <td data-title="Sebetdäki harytlaryň bahasy" colspan="4">
+                            <span class="woocommerce-Price-amount amount">
+                                <bdi>
+                                    <span class="woocommerce-Price-currencySymbol">
+                                        {{ cart_total }}
+                                    </span>
+                                    TMT
+                                </bdi>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="woocommerce-shipping-totals shipping">
+                        <th>Eltip bermek hyzmaty</th>
+                        <td data-title="service" colspan="4">
+                            <span>
+                               {{ services }}
+                            </span>
+                            {% if services == 'Mugt' %}
+                            {% else %}
+                                TMT
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="order-total">
+                        <th>Jemi</th>
+                        <td data-title="Total" colspan="4">
+                            <strong>
+                                <span class="woocommerce-Price-amount amount">
+                                    <bdi>
+                                        <span class="woocommerce-Price-currencySymbol">
+                                            {{ total }}
+                                        </span>
+                                      TMT
+                                    </bdi>
+                                </span>
+                            </strong>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+                <div class="mt-lg-3 mb-30">
+                    <div class="woocommerce-checkout-payment">
+                        <ul class="wc_payment_methods payment_methods methods">
+                            <li class="wc_payment_method payment_method_bacs">
+                                <input id="payment_method_bacs" type="radio" class="input-radio" name="payment_method" value="1" required>
+                                <label for="payment_method_bacs">Nagt töleg</label>
+                            </li>
+                            <li class="wc_payment_method payment_method_cheque">
+                                <input id="payment_method_cheque" type="radio" class="input-radio" name="payment_method" value="2" required>
+                                <label for="payment_method_cheque">Nagt däl töleg</label>
+                            </li>
+                        </ul>
+                        <div class="form-row place-order">
+                            <button type="submit" class="theme-btn">Sarga</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

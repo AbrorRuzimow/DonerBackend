@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tk">
+<head>
+    <title>DMS</title>
+    <meta charset="utf-8"/>
+    <meta name="description" content="Doner Management System"/>
+    <meta name="keywords" content="Doner Management System"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta property="og:locale" content="tk"/>
+    <link rel="icon" type="image/x-icon" href=""/>
+    <meta property="og:title" content="Doner Management System"/>
+    <meta property="og:site_name" content="Doner Management System"/>
+    <link rel="stylesheet" href="{% static 'administrator/assets/font/css.css' %}"/>
+    <link href="{% static 'administrator/assets/plugins/global/plugins.bundle.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'administrator/assets/css/style.bundle.css' %}" rel="stylesheet" type="text/css"/>
+    <style>
+        body {
+            background-image: url({% static 'administrator/image/bg10.jpeg' %});
+        }
+
+        [data-bs-theme="dark"] body {
+            background-image: url({% static 'administrator/image/bg10-dark.jpeg' %});
+        }
+    </style>
+</head>
+<body id="kt_body" class="app-blank bgi-size-cover bgi-position-center">
+<script>
+    let defaultThemeMode = "light";
+    let themeMode;
+    if (document.documentElement) {
+        if (document.documentElement.hasAttribute("data-bs-theme-mode")) {
+            themeMode = document.documentElement.getAttribute("data-bs-theme-mode");
+        } else {
+            if (localStorage.getItem("data-bs-theme") !== null) {
+                themeMode = localStorage.getItem("data-bs-theme");
+            } else {
+                themeMode = defaultThemeMode;
+            }
+        }
+        if (themeMode === "system") {
+            themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.setAttribute("data-bs-theme", themeMode);
+    }
+</script>
+<div class="d-flex flex-column flex-root" id="dmsroot">
+    <div class="d-flex flex-column flex-lg-row flex-column-fluid">
+        <div class="d-flex flex-lg-row-fluid">
+            <div class="d-flex flex-column flex-center pb-0 pb-lg-10 p-10 w-100">
+                <h1 class="text-primary-800 fs-2qx fw-bold text-center mb-7">
+                    Döner management system
+                </h1>
+                <div class="text-gray-600 fs-base text-center fw-semibold">
+                    Administrator
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column-fluid flex-lg-row-auto justify-content-center justify-content-lg-end p-lg-20 m-lg-10 p-12">
+            <div class="bg-body d-flex flex-column flex-center rounded-4 w-md-600px p-10">
+                <div class="d-flex flex-center flex-column align-items-stretch h-lg-100 w-md-400px">
+                    <div class="d-flex flex-center flex-column-fluid pb-15 pb-lg-20">
+                        <form method="post" class="form w-100">
+                            {% csrf_token %}
+                            <div class="text-center mb-11">
+                                <img src="" style="width: 180px;"><br/>
+                                <h1 class="text-success fw-bolder mb-3">
+                                    DMS
+                                </h1>
+                            </div>
+                            <div class="row g-3 mb-9">
+                            </div>
+                            <label for="agentlik_get_six" class="text-gray-700 fw-bold pb-2 pt-3">Ulanyjy ady:</label>
+                            <div class="fv-row mb-8">
+                                <input type="text" placeholder="Ulanyjy adyny giriziň" name="username"
+                                       autocomplete="off" class="form-control bg-transparent" required/>
+                            </div>
+                            <label for="agentlik_get_six" class="text-gray-700 fw-bold pb-2 pt-3">Açar sözi:</label>
+                            <div class="fv-row mb-3">
+                                <input type="password" placeholder="Açar sözüňizi giriziň" name="password"
+                                       autocomplete="off" class="form-control bg-transparent" required/>
+                            </div>
+                            <div class="d-grid mb-10 mt-10">
+                                <button type="submit" id="btn_form" class="btn btn-primary">
+                                    <span id="btn_title">Içeri gir</span>
+                                    <span id="btn_login"></span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="position-absolute" style="top: 2rem; right: 5rem;">
+                <div class="notice d-flex bg-light-danger rounded border-danger border border-dashed p-6 opacity-75">
+            <span class="svg-icon svg-icon-2tx svg-icon-danger me-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor"></rect>
+                    <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)"
+                          fill="currentColor"></rect>
+                    <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)"
+                          fill="currentColor"></rect>
+                </svg>
+            </span>
+                    <div class="d-flex flex-stack flex-grow-1">
+                        <div class="fw-semibold" id="server_message">
+                            <h4 class="text-gray-900 fw-bold">Habar</h4>
+                            <p id="" class="text-gray-700">{{ message }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+<script src="{% static 'administrator/assets/js/plugins.bundle.js' %}"></script>
+<script src="{% static 'administrator/assets/js/scripts.bundle.js' %}"></script>
+</body>9
+</html>

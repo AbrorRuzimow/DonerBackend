@@ -1,0 +1,82 @@
+{% extends 'administrator/base/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="d-flex flex-column flex-column-fluid">
+        <div id="kt_app_toolbar" class="app-toolbar pt-6 pb-2">
+            <div id="kt_app_toolbar_container" class="app-container  container-fluid d-flex align-items-stretch ">
+                <div class="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
+                    <div class="page-title d-flex flex-column justify-content-center gap-1 me-3">
+                        <h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bold fs-3 m-0">
+                            Cash Back üýtgetmek
+                        </h1>
+                    </div>
+                    {% csrf_token %}
+                    <div class="d-flex align-items-center gap-2 gap-lg-3">
+                        <a href="{% url 'Administrator:product_warehouse_list' models.pk %}" class="btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold">
+                            Yza
+                        </a>
+                        <button type="button" onclick="submitData()" class="btn btn-flex btn-primary h-40px fs-7 fw-bold">
+                            Ýatda sakla
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% csrf_token %}
+        <div id="kt_app_content" class="app-content  flex-column-fluid ">
+            <div id="kt_app_content_container" class="app-container  container-fluid ">
+                <form id="kt_ecommerce_add_product_form" class="form d-flex flex-column flex-lg-row">
+                    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                        <div class="card card-flush py-4">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>Cash Back</h2>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <input type="number" name="cash_balance" id="cash_balance" class="form-control mb-2" placeholder="Cash Back giriz" value="{{ models.cash_balance }}" required/>
+                                <div class="text-muted fs-7">Cash back göterimde</div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+        function submitData() {
+            const cash_balance = document.getElementById('cash_balance').value;
+            const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+            const formData = new FormData();
+            formData.append('cash_balance', cash_balance);
+            fetch('{% url 'Administrator:product_cash_back' models.pk %}', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                },
+                body: formData,
+            }).then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    throw new Error('' + response.status);
+                }
+            })
+                .then(data => {
+                    toastr.success('Maglumat üýtgedildi');
+                    document.getElementById('cash_balance').value = null;
+                    setTimeout(() => {
+                        window.location.href = '{% url 'Administrator:product_warehouse_list' models.pk %}';
+                    }, 500);
+
+                })
+                .catch(error => {
+                    console.log(error)
+                    toastr.error('Ýalňyşlyk ýüze çykdy');
+                });
+        }
+    </script>
+    <script src="{% static 'administrator/assets/js/custom/formrepeater/formrepeater.bundle.js' %}"></script>
+{% endblock %}

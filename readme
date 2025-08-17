@@ -1,0 +1,21 @@
+asgiref==3.8.1
+Django==4.2.23
+django-modeltranslation==0.19.16
+djangorestframework==3.16.0
+et_xmlfile==2.0.0
+openpyxl==3.1.5
+pillow==11.2.1
+sqlparse==0.5.3
+typing_extensions==4.14.0
+
+
+
+# modeltranslate package ucin yazmaly kod
+# python manage.py makemessages -l tk
+# python manage.py makemessages -l ru
+# python manage.py makemessages -l en
+
+# Terjimeleri yazmaly ./locale/tk 
+# Terjimeleri yazmaly ./locale/ru 
+# Terjimeleri yazmaly ./locale/en 
+# django-admin compilemessages

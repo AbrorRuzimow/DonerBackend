@@ -1,0 +1,87 @@
+{% extends 'administrator/base/base.html' %}
+{% block content %}
+    <form method="post" class="app-main flex-column flex-row-fluid " id="dms_main">
+        <div class="d-flex flex-column flex-column-fluid">
+            {% csrf_token %}
+            <div id="dms_toolbar" class="app-toolbar  pt-6 pb-2">
+                <div id="dms_toolbar_container" class="app-container container-fluid d-flex align-items-stretch ">
+                    <div class="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
+                        <div class="page-title d-flex flex-column justify-content-center gap-1 me-3">
+                            <h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bold fs-3 m-0">
+                                Ulanyjy goșmak
+                            </h1>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 gap-lg-3">
+                            <a href="{% url 'Administrator:users_list' %}" class="btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold">
+                                Yza
+                            </a>
+                            <button type="submit" class="btn btn-flex btn-primary h-40px fs-7 fw-bold">
+                                Ýatda sakla
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="dms_content" class="app-content  flex-column-fluid">
+                <div id="dms_content_container" class="app-container container-fluid">
+                    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                        <div class="d-flex flex-column gap-7 gap-lg-10">
+                            <div class="card card-flush py-4">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2>Maglumaty goșmak</h2>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="mb-10 fv-row">
+                                        <label for="username" class="required form-label">Username</label>
+                                        <input id="username" type="text" name="username" class="form-control mb-2" placeholder="Ulanyjy adyny giriziň" value="" required/>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="mb-10 fv-row">
+                                        <label for="phone_number" class="required form-label">Telefon belgi</label>
+                                        <input id="phone_number" type="text" name="phone_number" class="form-control mb-2" placeholder="Telefon belgini adyny giriziň" value="" required/>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="mb-10 fv-row">
+                                        <label for="password" class="required form-label">Açar sözi</label>
+                                        <input id="password" type="password" name="password" class="form-control mb-2" placeholder="Açar sözini adyny giriziň" value="" required/>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="mb-10 fv-row">
+                                        <label for="name" class="required form-label">Ulanyjy görnüşi</label>
+                                        <div class="row" data-kt-buttons="true" data-kt-buttons-target="[data-kt-button='true']">
+                                            <div class="col-6">
+                                                <label class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex text-start p-6" data-kt-button="true">
+                                                <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
+                                                    <input class="form-check-input" type="radio" id="user_type" name="user_type" value="1" />
+                                                </span>
+                                                    <span class="ms-5">
+                                                    <span class="fs-4 fw-bold text-gray-800 d-block">Administrator</span>
+                                                </span>
+                                                </label>
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex text-start p-6" data-kt-button="true">
+                                                <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
+                                                    <input class="form-check-input" type="radio" id="user_type" name="user_type" value="2"/>
+                                                </span>
+                                                    <span class="ms-5">
+                                                    <span class="fs-4 fw-bold text-gray-800 d-block">Manager</span>
+                                                </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

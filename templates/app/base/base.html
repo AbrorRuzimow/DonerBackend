@@ -1,0 +1,248 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="tk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="gramentheme">
+    <meta name="description" content="Döner">
+    <title>{% trans 'html_title' %}</title>
+    <link rel="shortcut icon" href="{% static 'app/logo.png' %}">
+{#    <link rel="shortcut icon" href="{% static 'app/assets/img/favicon.png' %}">#}
+    <link rel="stylesheet" href="{% static 'app/assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/assets/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/assets/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'app/assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'app/assets/css/meanmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'app/assets/css/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="{% static 'app/assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'app/assets/css/main.css' %}">
+</head>
+<body class="bg-color2">
+<div id="preloader" class="preloader">
+    <div class="animation-preloader">
+        <div class="spinner">
+        </div>
+        <div class="txt-loading">
+                <span data-text-preloader="D" class="letters-loading">
+                    D
+                </span>
+            <span data-text-preloader="Ö" class="letters-loading">
+                    Ö
+                </span>
+            <span data-text-preloader="R" class="letters-loading">
+                    R
+                </span>
+            <span data-text-preloader="T" class="letters-loading">
+                    T
+                </span>
+        </div>
+        <p class="text-center">ÇARYÝAR</p>
+    </div>
+    <div class="loader">
+        <div class="row">
+            <div class="col-3 loader-section section-left">
+                <div class="bg"></div>
+            </div>
+            <div class="col-3 loader-section section-left">
+                <div class="bg"></div>
+            </div>
+            <div class="col-3 loader-section section-right">
+                <div class="bg"></div>
+            </div>
+            <div class="col-3 loader-section section-right">
+                <div class="bg"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <div id="message_div" class="woocommerce-notices-wrapper" style="position:fixed; top: 20%; right: 7%; display: flex;justify-items: center; align-items: center">
+                <div class="woocommerce-message" style="width: 17rem; height: 3.4rem;display: flex; justify-content: space-between;">
+                    <p>
+                        {{ message }}
+                    </p>
+                    <button type="button" style="" onclick="document.getElementById('message_div').remove()" role="button">
+                        <svg width="32" height="32" viewBox="0 0 22 22" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor"></rect>
+                            <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)"
+                                  fill="currentColor"></rect>
+                            <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)"
+                                  fill="currentColor"></rect>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        {% elif message.tags == 'error' %}
+            <div id="message_div" class="woocommerce-notices-wrapper" style="position:fixed; top: 20%; right: 7%; display: flex;justify-items: center; align-items: center">
+                <div class="woocommerce-message" style="width: 17rem; height: 3.4rem;display: flex; justify-content: space-between;">
+                    <p>
+                        {{ message }}
+                    </p>
+                    <button type="button" style="" onclick="document.getElementById('message_div').remove()" role="button">
+                        <svg width="32" height="32" viewBox="0 0 22 22" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor"></rect>
+                            <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)"
+                                  fill="currentColor"></rect>
+                            <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)"
+                                  fill="currentColor"></rect>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<!-- Back To Top Start -->
+<button id="back-top" class="back-to-top">
+    <i class="fa-regular fa-arrow-up"></i>
+</button>
+
+<!-- Offcanvas Area Start -->
+{% include 'app/base/offcanvas.html' %}
+<div class="offcanvas__overlay"></div>
+
+<!-- Header Section Start -->
+{% include 'app/base/header.html' %}
+
+{% block content %}
+
+{% endblock %}
+
+{% include 'app/base/footer.html' %}
+
+<script src="{% static 'app/assets/js/jquery-3.7.1.min.js' %}"></script>
+<script src="{% static 'app/assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'app/assets/js/jquery.waypoints.js' %}"></script>
+<script src="{% static 'app/assets/js/jquery.counterup.min.js' %}"></script>
+<script src="{% static 'app/assets/js/viewport.jquery.js' %}"></script>
+<script src="{% static 'app/assets/js/magnific-popup.min.js' %}"></script>
+<script src="{% static 'app/assets/js/tilt.min.js' %}"></script>
+<script src="{% static 'app/assets/js/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'app/assets/js/jquery.meanmenu.min.js' %}"></script>
+<script src="{% static 'app/assets/js/wow.min.js' %}"></script>
+<script src="{% static 'app/assets/js/nice-select.min.js' %}"></script>
+<script src="{% static 'app/assets/js/main.js' %}"></script>
+
+<script>
+    function add_cart_home(product) {
+        const formData = new FormData();
+        formData.append('product', product);
+        const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+        fetch('{% url 'App:add_product_cart' %}', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken,
+            },
+            body: formData,
+        }).then(response => {
+            if (response.status === 200) {
+                return response.json();
+            } else {
+                throw new Error('' + response.status);
+            }
+        })
+            .then(data => {
+                console.log(data)
+                setTimeout(() => {
+                    {#window.location.reload();#}
+                }, 2);
+            })
+            .catch(error => {
+                console.log(error)
+            });
+    }
+    function add_cart(product) {
+        const formData = new FormData();
+        formData.append('product', product);
+        const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+        fetch('{% url 'App:add_product_cart' %}', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken,
+            },
+            body: formData,
+        }).then(response => {
+            if (response.status === 200) {
+                return response.json();
+            } else {
+                throw new Error('' + response.status);
+            }
+        })
+            .then(data => {
+                console.log(data)
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2);
+            })
+            .catch(error => {
+                console.log(error)
+            });
+    }
+
+    function remove_cart(product) {
+        const formData = new FormData();
+        formData.append('product', product);
+        const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+        fetch('{% url 'App:remove_product_cart' %}', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken,
+            },
+            body: formData,
+        }).then(response => {
+            if (response.status === 200) {
+                return response.json();
+            } else {
+                throw new Error('' + response.status);
+            }
+        })
+            .then(data => {
+                console.log(data)
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2);
+            })
+            .catch(error => {
+                console.log(error)
+            });
+    }
+
+    function delete_cart(product) {
+        const formData = new FormData();
+        formData.append('product', product);
+        const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+        fetch('{% url 'App:delete_product_cart' %}', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken,
+            },
+            body: formData,
+        }).then(response => {
+            if (response.status === 200) {
+                return response.json();
+            } else {
+                throw new Error('' + response.status);
+            }
+        })
+            .then(data => {
+                console.log(data)
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2);
+            })
+            .catch(error => {
+                console.log(error)
+            });
+    }
+</script>
+</body>
+
+</html>

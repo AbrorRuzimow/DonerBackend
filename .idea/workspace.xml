@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f9603bf4-d884-4199-8059-de37e10a237e" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2yqnR7R179jV8e1mOXikBWv88Am" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Notification.DisplayName-DoNotAsk-DatabaseConfigFileWatcher.found": "Database connection parameters found",
+    "Notification.DoNotAsk-DatabaseConfigFileWatcher.found": "true",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "django.template.preview.state": "SHOW_EDITOR",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/Users/abror/PycharmProjects/DonerBackend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/administrator/product/warehouse" />
+      <recent name="$PROJECT_DIR$/templates/administrator/product" />
+      <recent name="$PROJECT_DIR$/templates/administrator" />
+      <recent name="$PROJECT_DIR$/templates/manager" />
+      <recent name="$PROJECT_DIR$/App/urls" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/administrator/product/warehouse" />
+      <recent name="$PROJECT_DIR$/templates/app" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="DonerBackend" type="Python.DjangoServer" factoryName="Django server">
+      <module name="DonerBackend" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-PY-251.23774.444" />
+        <option value="bundled-python-sdk-890ed5b35930-d9c5bdb153f4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.23774.444" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f9603bf4-d884-4199-8059-de37e10a237e" name="Changes" comment="" />
+      <created>1750570961063</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1750570961063</updated>
+      <workItem from="1750570963006" duration="1183000" />
+      <workItem from="1750653691173" duration="7642000" />
+      <workItem from="1750823392051" duration="738000" />
+      <workItem from="1750831188723" duration="4856000" />
+      <workItem from="1751632024012" duration="2054000" />
+      <workItem from="1751863514938" duration="3964000" />
+      <workItem from="1751871456387" duration="2646000" />
+      <workItem from="1751948331455" duration="6083000" />
+      <workItem from="1752052487230" duration="4986000" />
+      <workItem from="1752122540464" duration="10060000" />
+      <workItem from="1752193009068" duration="2074000" />
+      <workItem from="1752200332406" duration="3691000" />
+      <workItem from="1752252708148" duration="3455000" />
+      <workItem from="1752278526430" duration="3698000" />
+      <workItem from="1752299270849" duration="613000" />
+      <workItem from="1752321165965" duration="7248000" />
+      <workItem from="1752375838814" duration="2248000" />
+      <workItem from="1752397563577" duration="1581000" />
+      <workItem from="1752413957181" duration="756000" />
+      <workItem from="1752416720700" duration="913000" />
+      <workItem from="1752424201623" duration="1406000" />
+      <workItem from="1752462547083" duration="597000" />
+      <workItem from="1752480285575" duration="1409000" />
+      <workItem from="1752486661703" duration="2559000" />
+      <workItem from="1752497493184" duration="1828000" />
+      <workItem from="1752515437441" duration="1106000" />
+      <workItem from="1752534309770" duration="3758000" />
+      <workItem from="1752557202683" duration="14422000" />
+      <workItem from="1752597334618" duration="2495000" />
+      <workItem from="1752636545543" duration="3304000" />
+      <workItem from="1752670943667" duration="2946000" />
+      <workItem from="1752683668071" duration="7556000" />
+      <workItem from="1752735411975" duration="474000" />
+      <workItem from="1752741547438" duration="9313000" />
+      <workItem from="1752776100824" duration="2939000" />
+      <workItem from="1752797079898" duration="3156000" />
+      <workItem from="1752811531876" duration="2906000" />
+      <workItem from="1752820169635" duration="2147000" />
+      <workItem from="1753969285096" duration="216000" />
+      <workItem from="1754021645563" duration="527000" />
+      <workItem from="1754053749185" duration="5126000" />
+      <workItem from="1754543169970" duration="42000" />
+      <workItem from="1754631393367" duration="170000" />
+      <workItem from="1754652359401" duration="709000" />
+      <workItem from="1754698797683" duration="1516000" />
+      <workItem from="1755008474871" duration="111000" />
+      <workItem from="1755363973617" duration="2168000" />
+      <workItem from="1755401291663" duration="163000" />
+      <workItem from="1755401473343" duration="292000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

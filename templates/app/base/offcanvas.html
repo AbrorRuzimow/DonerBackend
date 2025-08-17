@@ -1,0 +1,77 @@
+{% load static %}
+<div class="fix-area">
+    <div class="offcanvas__info">
+        <div class="offcanvas__wrapper">
+            <div class="offcanvas__content">
+                <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
+                    <div class="offcanvas__logo">
+                        <a href="{% url 'App:home' %}">
+                            {#                            <img src="{% static 'app/assets/img/logo/logo.svg' %}" alt="logo-img">#}
+                            <h4 class="" data-wow-delay="0.7s" style="visibility: visible; animation-delay: 0.7s; animation-name: fadeInUp;">
+                                Dört Çaryýar
+                            </h4>
+                        </a>
+                    </div>
+                    <div class="offcanvas__close">
+                        <button>
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="offcanvas__contact">
+                    <h4>Biz barada</h4>
+                    <ul>
+                        <li class="d-flex align-items-center">
+                            <div class="offcanvas__contact-icon">
+                                <i class="fal fa-map-marker-alt"></i>
+                            </div>
+                            <div class="offcanvas__contact-text">
+                                <a target="_blank" href="#">Aşgabat ş</a>
+                            </div>
+                        </li>
+                        <li class="d-flex align-items-center">
+                            <div class="offcanvas__contact-icon mr-15">
+                                <i class="fal fa-envelope"></i>
+                            </div>
+                            <div class="offcanvas__contact-text">
+                                <a href="tel:+013-003-003-9993"><span
+                                        class="mailto:doner.tm@gmail.com">doner.tm@gmail.com</span></a>
+                            </div>
+                        </li>
+                        <li class="d-flex align-items-center">
+                            <div class="offcanvas__contact-icon mr-15">
+                                <i class="fal fa-clock"></i>
+                            </div>
+                            <div class="offcanvas__contact-text">
+                                <a target="_blank" href="#">7 gün - 08:00 - 20:00</a>
+                            </div>
+                        </li>
+                        <li class="d-flex align-items-center">
+                            <div class="offcanvas__contact-icon mr-15">
+                                <i class="far fa-phone"></i>
+                            </div>
+                            <div class="offcanvas__contact-text">
+                                <a href="tel:+993 65 65 65 65">+993 65 65 65 65</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="header-button mt-4">
+                        <a href="{% url 'App:cart' %}" class="theme-btn">
+                                <span class="button-content-wrapper d-flex align-items-center justify-content-center">
+                                    <span class="button-icon"><i
+                                            class="fa-sharp fa-regular fa-cart-shopping bg-transparent text-white me-2"></i></span>
+                                    <span class="button-text">Sebet</span>
+                                </span>
+                        </a>
+                    </div>
+                    <div class="social-icon d-flex align-items-center">
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

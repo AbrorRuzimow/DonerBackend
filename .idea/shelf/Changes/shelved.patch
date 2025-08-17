@@ -1,0 +1,204 @@
+Index: .idea/material_theme_project_new.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/material_theme_project_new.xml b/.idea/material_theme_project_new.xml
+new file mode 100644
+--- /dev/null	(date 1752588157035)
++++ b/.idea/material_theme_project_new.xml	(date 1752588157035)
+@@ -0,0 +1,17 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="MaterialThemeProjectNewConfig">
++    <option name="metadata">
++      <MTProjectMetadataState>
++        <option name="migrated" value="true" />
++        <option name="pristineConfig" value="false" />
++        <option name="userId" value="73146c3:19707d95822:-7ff7" />
++      </MTProjectMetadataState>
++    </option>
++    <option name="titleBarState">
++      <MTProjectTitleBarConfigState>
++        <option name="overrideColor" value="false" />
++      </MTProjectTitleBarConfigState>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1755401540888)
++++ b/.idea/vcs.xml	(date 1755401540888)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/codeStyles/codeStyleConfig.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/codeStyles/codeStyleConfig.xml b/.idea/codeStyles/codeStyleConfig.xml
+new file mode 100644
+--- /dev/null	(date 1750662327946)
++++ b/.idea/codeStyles/codeStyleConfig.xml	(date 1750662327946)
+@@ -0,0 +1,5 @@
++<component name="ProjectCodeStyleConfiguration">
++  <state>
++    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default" />
++  </state>
++</component>
+\ No newline at end of file
+Index: .idea/inspectionProfiles/profiles_settings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+new file mode 100644
+--- /dev/null	(date 1750571027974)
++++ b/.idea/inspectionProfiles/profiles_settings.xml	(date 1750571027974)
+@@ -0,0 +1,6 @@
++<component name="InspectionProjectProfileManager">
++  <settings>
++    <option name="USE_PROJECT_PROFILE" value="false" />
++    <version value="1.0" />
++  </settings>
++</component>
+\ No newline at end of file
+Index: .idea/DonerBackend.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/DonerBackend.iml b/.idea/DonerBackend.iml
+new file mode 100644
+--- /dev/null	(date 1750571027930)
++++ b/.idea/DonerBackend.iml	(date 1750571027930)
+@@ -0,0 +1,30 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="PYTHON_MODULE" version="4">
++  <component name="FacetManager">
++    <facet type="django" name="Django">
++      <configuration>
++        <option name="rootFolder" value="$MODULE_DIR$" />
++        <option name="settingsModule" value="DonerBackend/settings.py" />
++        <option name="manageScript" value="$MODULE_DIR$/manage.py" />
++        <option name="environment" value="&lt;map/&gt;" />
++        <option name="doNotUseTestRunner" value="false" />
++        <option name="trackFilePattern" value="migrations" />
++      </configuration>
++    </facet>
++  </component>
++  <component name="NewModuleRootManager">
++    <content url="file://$MODULE_DIR$">
++      <excludeFolder url="file://$MODULE_DIR$/.venv" />
++    </content>
++    <orderEntry type="jdk" jdkName="Python 3.9 (DonerBackend)" jdkType="Python SDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++  <component name="TemplatesService">
++    <option name="TEMPLATE_CONFIGURATION" value="Django" />
++    <option name="TEMPLATE_FOLDERS">
++      <list>
++        <option value="$MODULE_DIR$/templates" />
++      </list>
++    </option>
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/dataSources.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources.xml b/.idea/dataSources.xml
+new file mode 100644
+--- /dev/null	(date 1755401512285)
++++ b/.idea/dataSources.xml	(date 1755401512285)
+@@ -0,0 +1,20 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
++    <data-source source="LOCAL" name="db" uuid="3e60b9e0-f14f-4526-bbf3-ddb46a58a5b8">
++      <driver-ref>sqlite.xerial</driver-ref>
++      <synchronize>true</synchronize>
++      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
++      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db.sqlite3</jdbc-url>
++      <working-dir>$ProjectFileDir$</working-dir>
++      <libraries>
++        <library>
++          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.45.1/org/xerial/sqlite-jdbc/3.45.1.0/sqlite-jdbc-3.45.1.0.jar</url>
++        </library>
++        <library>
++          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.45.1/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar</url>
++        </library>
++      </libraries>
++    </data-source>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100644
+--- /dev/null	(date 1750570969157)
++++ b/.idea/.gitignore	(date 1750570969157)
+@@ -0,0 +1,8 @@
++# Default ignored files
++/shelf/
++/workspace.xml
++# Editor-based HTTP Client requests
++/httpRequests/
++# Datasource local storage ignored files
++/dataSources/
++/dataSources.local.xml
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100644
+--- /dev/null	(date 1750571027937)
++++ b/.idea/modules.xml	(date 1750571027937)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/DonerBackend.iml" filepath="$PROJECT_DIR$/.idea/DonerBackend.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1750571027969)
++++ b/.idea/misc.xml	(date 1750571027969)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Black">
++    <option name="sdkName" value="Python 3.9 (DonerBackend)" />
++  </component>
++</project>
+\ No newline at end of file

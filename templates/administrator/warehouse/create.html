@@ -1,0 +1,68 @@
+{% extends 'administrator/base/base.html' %}
+{% block content %}
+    <form method="post" class="app-main flex-column flex-row-fluid " id="dms_main">
+        <div class="d-flex flex-column flex-column-fluid">
+            {% csrf_token %}
+            <div id="dms_toolbar" class="app-toolbar  pt-6 pb-2">
+                <div id="dms_toolbar_container" class="app-container container-fluid d-flex align-items-stretch ">
+                    <div class="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
+                        <div class="page-title d-flex flex-column justify-content-center gap-1 me-3">
+                            <h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bold fs-3 m-0">
+                                Ammara haryt goșmak
+                            </h1>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 gap-lg-3">
+                            <a href="{% url 'Administrator:warehouse_list' %}" class="btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold">
+                                Yza
+                            </a>
+                            <button type="submit" class="btn btn-flex btn-primary h-40px fs-7 fw-bold">
+                                Ýatda sakla
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="dms_content" class="app-content  flex-column-fluid">
+                <div id="dms_content_container" class="app-container container-fluid">
+                    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                        <div class="d-flex flex-column gap-7 gap-lg-10">
+                            <div class="card card-flush py-4">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2>Maglumaty goșmak</h2>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <select id="warehouse_name_fk" name="warehouse_name_fk"
+                                            data-control="select2"
+                                            data-dropdown-parent="#dms_toolbar"
+                                            data-placeholder="Harydyň görnüşini saýlaň..."
+                                            class="form-select form-select-transparent" required>
+                                        <option value="">Harydy saýlaň</option>
+                                        {% for model in warehouse_name_models %}
+                                            <option value="{{ model.id }}">{{ model.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="mb-10 fv-row">
+                                        <label for="amount" class="required form-label">Mukdary</label>
+                                        <input id="amount" type="number" name="amount" min="0" max="9999" step="0.01" class="form-control mb-2" placeholder="Hardydyň mukdaryny giriziň" value="" required/>
+                                        <div class="text-muted fs-7">Harydyň mukdaryny (agramy, sany) girizmeli</div>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="mb-10 fv-row">
+                                        <label for="price" class="required form-label">Bahasy</label>
+                                        <input id="price" type="number" name="price" min="0" max="9999" step="0.01" class="form-control mb-2" placeholder="Hardydyň mukdaryny giriziň" value="" required/>
+                                        <div class="text-muted fs-7">Harydyň bahasyny girizmeli</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

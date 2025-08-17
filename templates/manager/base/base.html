@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tk">
+<head>
+    <title>DMS | Manager</title>
+    <meta charset="utf-8"/>
+    <meta name="description" content="Doner Managemen System"/>
+    <meta name="keywords" content="Doner Managemen System"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta property="og:locale" content="tk"/>
+    <link rel="icon" type="image/x-icon" href=""/>
+    <meta property="og:title" content="Doner Managemen System"/>
+    <meta property="og:site_name" content="Doner Managemen System"/>
+    <link rel="shortcut icon" href=""/>
+    <link href="{% static 'administrator/assets/plugins/custom/datatables/datatables.bundle.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'administrator/assets/plugins/global/plugins.bundle.css' %}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'administrator/assets/fontawesomefree/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'administrator/assets/fontawesomefree/css/brands.css' %}">
+    <link rel="stylesheet" href="{% static 'administrator/assets/fontawesomefree/css/solid.css' %}">
+    <link rel="stylesheet" href="{% static 'administrator/assets/font/css.css' %}">
+    <link href="{% static 'administrator/assets/css/style.bundle.css' %}" rel="stylesheet" type="text/css"/>
+    <script async src="{% static 'administrator/assets/js/gtag.js' %}"></script>
+    {% block css %}
+
+    {% endblock %}
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-52YZ3XGZJ6');
+    </script>
+    <script>
+        if (window.top != window.self) {
+            window.top.location.replace(window.self.location.href);
+        }
+    </script>
+</head>
+<body data-kt-app-header-fixed="true" data-kt-app-header-fixed-mobile="true" data-kt-app-sidebar-enabled="true"
+      data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true"
+      data-kt-app-sidebar-push-toolbar="true" data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true"
+      data-kt-app-aside-enabled="true" data-kt-app-aside-fixed="true"
+      data-kt-app-aside-push-toolbar="true" data-kt-app-aside-push-footer="true" class="app-default">
+<script>
+    let defaultThemeMode = "light";
+    let themeMode;
+    if (document.documentElement) {
+        if (document.documentElement.hasAttribute("data-bs-theme-mode")) {
+            themeMode = document.documentElement.getAttribute("data-bs-theme-mode");
+        } else {
+            if (localStorage.getItem("data-bs-theme") !== null) {
+                themeMode = localStorage.getItem("data-bs-theme");
+            } else {
+                themeMode = defaultThemeMode;
+            }
+        }
+        if (themeMode === "system") {
+            themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.setAttribute("data-bs-theme", themeMode);
+    }
+</script>
+<div class="d-flex flex-column flex-root app-root" id="dms_root">
+    {% include 'manager/base/navbar.html' %}
+    <div class="app-wrapper  flex-column flex-row-fluid" id="dms_wrapper">
+        {% include 'manager/base/sidebar.html' %}
+        <div class="app-main flex-column flex-row-fluid" id="dms_main">
+            {% block content %}
+            {% endblock %}
+        </div>
+        {% include 'manager/base/footer.html' %}
+    </div>
+    <div class="scrolltop" data-kt-scrolltop="true">
+        <span class="svg-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)"
+                  fill="currentColor"></rect>
+                <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z"
+                      fill="currentColor"></path>
+            </svg>
+        </span>
+    </div>
+</div>
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <div id="toastr-container" class="toastr-top-right">
+                <div class="toastr toastr-success" aria-live="polite">
+                    <button type="button" class="toastr-close-button" onclick="document.getElementById('toastr-container').remove()" role="button">
+                        <svg width="52" height="52" viewBox="0 0 22 22" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor"></rect>
+                            <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)"
+                                  fill="currentColor"></rect>
+                            <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)"
+                                  fill="currentColor"></rect>
+                        </svg>
+                    </button>
+                    <div class="toastr-message">{{ message }}</div>
+                </div>
+            </div>
+        {% elif message.tags == 'error' %}
+            <div id="toastr-container" class="toastr-top-right">
+                <div class="toastr toastr-error" aria-live="polite">
+                    <button type="button" class="toastr-close-button" onclick="document.getElementById('toastr-container').remove()" role="button">
+                        <svg width="52" height="52" viewBox="0 0 22 22" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor"></rect>
+                            <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)"
+                                  fill="currentColor"></rect>
+                            <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)"
+                                  fill="currentColor"></rect>
+                        </svg>
+                    </button>
+                    <div class="toastr-message">{{ message }}</div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+<script src="{% static 'administrator/assets/plugins/global/plugins.bundle.js' %}"></script>
+<script src="{% static 'administrator/assets/js/scripts.bundle.js' %}"></script>
+<script src="{% static 'administrator/assets/plugins/custom/datatables/datatables.bundle.js' %}"></script>
+<script src="{% static 'administrator/assets/js/swall.js' %}"></script>
+{% block js %}
+
+{% endblock %}
+</body>
+</html>

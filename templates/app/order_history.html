@@ -1,0 +1,168 @@
+{% extends 'app/base/base.html' %}
+
+{% block content %}
+    <div class="breadcumb-section">
+        <div class="breadcumb-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcumb-content">
+                            <h1 class="breadcumb-title">Meniň sargytlarym</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function order_cancel(name) {
+            const formData = new FormData();
+            formData.append('name', name);
+            const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+            fetch('{% url 'App:order_history' %}', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                },
+                body: formData,
+            }).then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    throw new Error('' + response.status);
+                }
+            })
+                .then(data => {
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 200);
+
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+        }
+    </script>
+    <div class="section-padding">
+        <div class="container">
+            <div class="tinv-wishlist woocommerce tinv-wishlist-clear">
+                <div class="tinv-header">
+                    <h2 class="mb-30">Menin sargytlarym</h2>
+                </div>
+                <table class="tinvwl-table-manage-list">
+                    <thead>
+                    <tr>
+                        <th class="product-name">
+                            <span class="tinvwl-full">Sargydyn Kody</span>
+                        </th>
+                        <th class="product-price">Jemi bahasy</th>
+                        <th class="product-date">Wagty</th>
+                        <th class="product-stock">Ýagdaýy</th>
+                        <th class="product-action"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for model in models %}
+                        <tr class="wishlist_item">
+                            <td class="product-name">
+                                <a href="{% url 'App:order' model.name %}">{{ model.name }}</a>
+                            </td>
+                            <td class="product-price">
+                                    <span class="woocommerce-Price-amount amount">
+                                        <bdi>
+                                            <span class="woocommerce-Price-currencySymbol">
+                                                {{ model.total_price }}TMT {% if model.delivery_price %}+ {{ model.delivery_price }}TMT{% endif %}
+                                            </span>
+                                        </bdi>
+                                    </span>
+                            </td>
+                            <td class="product-date">
+                                <time class="entry-date" datetime="{{ model.date }}">{{ model.date }}</time>
+                            </td>
+                            <td class="product-stock">
+                                <p class="stock in-stock">
+                                        <span>
+                                            <i class="fas fa-check{% if model.order_state == '3' %}-circle{% endif %} text-{% if model.order_state == '1' %}warning{% elif model.order_state == '2' or model.order_state == '3' %}success{% elif model.order_state == '4' or model.order_state == '5' %}danger{% else %} {% endif %}"></i>
+                                        </span>
+                                    <span class="tinvwl-txt text-{% if model.order_state == '1' %}warning{% elif model.order_state == '2' or model.order_state == '3' %}success{% elif model.order_state == '4' or model.order_state == '5' %}danger{% else %} {% endif %}">
+                                            {% for order_status in order_status_list %}
+                                                {% if model.order_state == order_status.0 %}
+                                                    {{ order_status.1 }}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </span>
+                                </p>
+                            </td>
+                            <td class="product-action">
+                                {% if model.order_state == '1' %}
+                                    <button type="button" class="button as-btn style4" name="tinvwl-add-to-cart" value="58" title="Sargydy ýatyr" onclick="order_cancel('{{ model.name }}')">
+                                        <i class="fal fa-minus-circle"></i><span class="tinvwl-txt">Sargydy ýatyr</span>
+                                    </button>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="page-nav-wrap text-center">
+                    <ul>
+                        {% if page_obj.has_previous %}
+                            <li>
+                                <a class="previous" href="?page={{ page_obj.previous_page_number }}&limit={{ limit }}">
+                                    <i class="fa-sharp fa-light fa-arrow-left-long"></i>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <button class="previous disabled" style="cursor:no-drop;" disabled>
+                                    <i class="fa-sharp fa-light fa-arrow-left-long"></i>
+                                </button>
+                            </li>
+                        {% endif %}
+                        {% if page_obj.number|add:'-4' > 1 %}
+                            <li>
+                                <a class="page-numbers" href="?page=1&limit={{ limit }}">1</a>
+                            </li>
+                            <li>
+                                <a class="page-numbers" href="?page={{ page_obj.number|add:'-4' }}&limit={{ limit }}">&hellip;</a>
+                            </li>
+                        {% endif %}
+                        {% for i in page_obj.paginator.page_range %}
+                            {% if page_obj.number == i %}
+                                <li>
+                                    <a class="page-numbers active" href="?page={{ i }}&limit={{ limit }}">{{ i }}</a>
+                                </li>
+                            {% elif i > page_obj.number|add:'-4' and i < page_obj.number|add:'4' %}
+                                <li>
+                                    <a class="page-numbers" href="?page={{ i }}&limit={{ limit }}">{{ i }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+                            <li>
+                                <a class="page-numbers" href="?page={{ page_obj.number|add:'4' }}&limit={{ limit }}">&hellip;</a>
+                            </li>
+                            <li>
+                                <a class="page-numbers" href="?page={{ page_obj.paginator.num_pages }}&limit={{ limit }}">{{ page_obj.paginator.num_pages }}</a>
+                            </li>
+                        {% endif %}
+                        {% if page_obj.has_next %}
+                            <li>
+                                <a class="next" href="?page={{ page_obj.next_page_number }}&limit={{ limit }}">
+                                    <i class="fa-sharp fa-light fa-arrow-right-long"></i>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <button class="next disabled" style="cursor:no-drop;" disabled>
+                                    <i class="fa-sharp fa-light fa-arrow-right-long"></i>
+                                </button>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                {% csrf_token %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

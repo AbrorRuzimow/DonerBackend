@@ -1,0 +1,154 @@
+{% extends 'app/base/base.html' %}
+{% block content %}
+    <div class="breadcumb-section">
+        <div class="breadcumb-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcumb-content">
+                            <h1 class="breadcumb-title">Cart List</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="th-cart-wrapper  section-padding fix bg-white">
+        <div class="container">
+            <form class="woocommerce-cart-form">
+                {% csrf_token %}
+                <table class="cart_table">
+                    <thead>
+                    <tr>
+                        <th class="cart-col-image">Suraty</th>
+                        <th class="cart-colname">Ady</th>
+                        <th class="cart-col-price">Bahasy</th>
+                        <th class="cart-col-quantity">Mukdary</th>
+                        <th class="cart-col-total">Jemi</th>
+                        <th class="cart-col-remove">Aýyrmak</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for cart_model in cart_models %}
+                        <tr class="cart_item">
+                            <td data-title="{{ cart_model.product_pk.name }}">
+                                <a class="cartimage" href="#">
+                                    <img width="91" height="91" src="/media/{{ cart_model.image }}" alt="Image">
+                                </a>
+                            </td>
+                            <td data-title="Name">
+                                <a class="cartname" href="#">{{ cart_model.product.name }}</a>
+                            </td>
+                            <td data-title="Price">
+                                <span class="amount">
+                                    <bdi>
+                                        <span>
+                                             {% if cart_model.product.expensive_price %}
+                                                 {{ cart_model.product.expensive_price }}
+                                             {% else %}
+                                                 {{ cart_model.product.price }}
+                                             {% endif %}
+                                        </span>
+                                       TMT
+                                    </bdi>
+                                </span>
+                            </td>
+                            <td data-title="Quantity">
+                                <div class="quantity">
+                                    <button onclick="remove_cart({{ cart_model.product.id }})" class="quantity-minus qty-btn">
+                                        <i class="far fa-minus"></i>
+                                    </button>
+                                    <input type="number" class="qty-input" value="{{ cart_model.quantity }}" min="1" max="99">
+                                    <button onclick="add_cart({{ cart_model.product.id }})" class="quantity-plus qty-btn">
+                                        <i class="far fa-plus"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            <td data-title="Total">
+                                <span class="amount">
+                                    <bdi>
+                                        <span>
+                                            {{ cart_model.total }}
+                                        </span>
+                                        TMT
+                                    </bdi>
+                                </span>
+                            </td>
+                            <td data-title="Remove">
+                                <button onclick="delete_cart({{ cart_model.product.id }})" class="remove"><i class="fal fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                    {% empty %}
+
+                    {% endfor %}
+                    <tr>
+                        <td colspan="6" class="actions">
+                            <a href="{% url 'App:home' %}" class="theme-btn">Söwdany dowam ediň</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+            {% if cart_total != 0 %}
+                <div class="row justify-content-end">
+                    <div class="col-md-8 col-lg-7 col-xl-6">
+                        <h2 class="h4 summary-title">Sebetdäki harytlaryň bahasy</h2>
+                        <table class="cart_totals">
+                            <tbody>
+                            <tr>
+                                <td>Harytlaryň bahasy</td>
+                                <td data-title="Harytlaryň bahasy">
+                                <span class="amount">
+                                    <bdi>
+                                        <span>
+                                            {{ cart_total }}
+                                        </span>
+                                        TMT
+                                    </bdi>
+                                </span>
+                                </td>
+                            </tr>
+                            <tr class="shipping">
+                                <th>Eltip bermek hyzmaty</th>
+                                <td data-title="Eltip bermek hyzmaty">
+                                <span class="services-card">
+                                    <bdi>
+                                        <span>
+                                           {{ services }}
+                                        </span>
+                                        {% if services == 'Mugt' %}
+                                        {% else %}
+                                            TMT
+                                        {% endif %}
+                                    </bdi>
+                                </span>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <t9foot>
+                                <tr class="order-total">
+                                    <td>Jemi</td>
+                                    <td data-title="Jemi">
+                                        <strong>
+                                    <span class="order-total">
+                                        <bdi>
+                                            <span>
+                                                {{ total }}
+                                            </span>
+                                                TMT
+                                            </bdi>
+                                    </span>
+                                        </strong>
+                                    </td>
+                                </tr>
+                            </t9foot>
+                        </table>
+                        <div class="wc-proceed-to-checkout mt-3">
+                            <a href="{% url 'App:checkout' %}" class="theme-btn btn-fw">Tassyklamak</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

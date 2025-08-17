@@ -1,0 +1,316 @@
+{% extends 'app/base/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+    <section class="banner-section fix">
+        <div class="slider-area">
+            <div class="swiper banner3-slider">
+                <div class="swiper-wrapper">
+                    {% csrf_token %}
+                    {% for home_model in home_models %}
+                        <div class="swiper-slide">
+                            <div class="banner-wrapper style3 bg-img">
+                                <div class="shape1  d-none d-xxl-block" data-animation="slideInLeft" data-duration="2s"
+                                     data-delay=".3s">
+                                    <img class="float-bob-y" src="{{ home_model.image1.url }}" alt="shape">
+                                </div>
+                                <div class="shape2  d-none d-xxl-block" data-animation="slideInLeft" data-duration="2s"
+                                     data-delay=".5s">
+                                    <img class="float-bob-x" src="{{ home_model.image2.url }}" alt="shape">
+                                </div>
+                                <div class="shape3" data-tilt data-tilt-max="4"
+                                     data-animation="slideInLeft" data-duration="2s" data-delay=".8s">
+                                    <img src="{{ home_model.image3.url }}" alt="shape">
+                                </div>
+                                <div class="shape4 d-none d-xxl-block" data-animation="slideInLeft" data-duration="2s"
+                                     data-delay="1s">
+                                    <img src="{{ home_model.image4.url }}" alt="shape">
+                                </div>
+                                <div class="shape2"></div>
+                                <div class="overlay"></div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="banner-style3">
+                                                <div class="subtitle" data-animation="slideInRight" data-duration="2s"
+                                                     data-delay=".3s">{{ home_model.text1 }}
+                                                </div>
+                                                <h1 class="title" data-animation="slideInRight" data-duration="2s"
+                                                    data-delay=".7s">
+                                                    <span>{{ home_model.text2 }}</span> {{ home_model.text3 }}
+                                                </h1>
+                                                <p data-animation="slideInRight" data-duration="2s" data-delay="2s">{{ home_model.text4 }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="arrow-prev3"><img src="{% static 'app/assets/img/icon/arrowPrev.svg' %}" alt="Icon"></div>
+                <div class="arrow-next3"><img src="{% static 'app/assets/img/icon/arrowNext.svg' %}" alt="Icon"></div>
+                <div class="pagination-class3 swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="popular-dishes-section fix section-padding pt-0">
+        <div class="popular-dishes-wrapper-container">
+            <div class="container">
+                <div class="popular-dishes-wrapper style2 section-padding bg-white ">
+                    <div class="shape1 float-bob-x d-none d-xxl-block">
+                        <img src="{% static 'app/assets/img/shape/popularDishesShape1_1.png' %}" alt="shape">
+                    </div>
+                    <div class="shape2 float-bob-x d-none d-xxl-block">
+                        <img src="{% static 'app/assets/img/shape/popularDishesShape1_2.png' %}" alt="shape">
+                    </div>
+                    <div class="container">
+                        <div class="title-area">
+                            <div class="sub-title text-center wow fadeInUp" data-wow-delay="0.5s">
+                                <img class="me-1" src="{% static 'app/assets/img/icon/titleIcon.svg' %}" alt="icon">{% trans 'home_tagam' %}<img
+                                    class="ms-1" src="{% static 'app/assets/img/icon/titleIcon.svg' %}" alt="icon">
+                            </div>
+                            <h2 class="title wow fadeInUp" data-wow-delay="0.7s">
+                                {% trans 'home_tagam_title' %}
+                            </h2>
+                        </div>
+                        <div class="dishes-card-wrap style1 mb-60">
+                            {% for product in product_list %}
+                                <div class="dishes-card style2 wow fadeInUp" data-wow-delay="0.{{ forloop.counter }}s">
+                                    {% if product.percentage %}
+                                        <div class="bg-orange position-relative text-white" style="height: 36px;width: 36px; border-radius: inherit;top: -4%;right: -92%;display: flex; justify-content: center;align-items: center;">
+                                            {{ product.percentage }}%
+                                        </div>
+                                    {% endif %}
+                                    <div class="dishes-thumb" style="display: flex; justify-content: center;align-items: center;">
+                                        <img src="/media/{{ product.image }}" alt="thumb" style="height: 100px; display: flex; justify-content: center; align-items: center">
+                                        <div class="circle-shape">
+                                            <img class="cir36" src="{% static 'app/assets/img/food-items/circleShape.png' %}" alt="shape">
+                                        </div>
+                                    </div>
+                                    <div class="dishes-content">
+                                        <a href="">
+                                            <h3>{{ product.name }}</h3>
+                                        </a>
+                                        <div class="text">{{ product.description }}</div>
+                                        {% if product.expensive_price %}
+                                            <del class="text-danger">
+                                                <h6 class="fw-normal">
+                                                    <bdi>
+                                                        {{ product.price }} TMT
+                                                    </bdi>
+                                                </h6>
+                                            </del>
+                                            <h6>{{ product.expensive_price }} TMT</h6>
+                                        {% else %}
+                                            <h6>{{ product.price }} TMT</h6>
+                                        {% endif %}
+                                        <button type="button" onclick="add_cart_home({{ product.id }})" class="theme-btn style6">
+                                            Sebede sal
+                                            <i class="fa-regular fa-basket-shopping"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="btn-wrapper">
+                            <a class="theme-btn" href=""> Hemmesini gör
+                                <i class="fa-sharp fa-regular fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="history-section fix  bg-title">
+        <div class="tree-shape">
+            <img src="{% static 'app/assets/img/history/tree-shape.png' %}" alt="img">
+        </div>
+        <div class="container">
+            <div class="history-wrapper style1">
+                <div class="row gx-60">
+                    <div class="col-lg-8">
+                        <div class="history-thumb mt-5 mt-lg-0">
+                            <img class="thumb" src="{% static 'app/assets/img/history/historyThumb1_1.jpg' %}" alt="thumb">
+
+
+                            <div class="video-wrap ripple-effect">
+                                <a href="https://www.youtube.com/watch?v=f2Gzr8sAGB8" class="play-btn popup-video"><img
+                                        class="playerImg" src="{% static 'app/assets/img/shape/player2.svg' %}" alt="icon"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="history-content section-padding">
+                            <div class="title-area mb-45">
+                                <div class="sub-title text-start wow fadeInUp" data-wow-delay="0.5s">
+                                    <img class="me-1" src="{% static 'app/assets/img/icon/titleIcon.svg' %}" alt="icon"> Näme üçin biz? Biziň aýratynlyklarymyz!
+                                    <img class="ms-1" src="{% static 'app/assets/img/icon/titleIcon.svg' %}" alt="icon">
+                                </div>
+                                <div class="title text-start text-white wow fadeInUp" data-wow-delay="0.7s">
+                                    The history of our restaurant
+                                </div>
+
+                                <p class="text-white">It is a long established fact that a reader will be distracted the
+                                    readable content of a page</p>
+                            </div>
+
+                            <div class="fancy-box style6">
+                                <div class="item">
+                                    <div class="icon">
+                                        <img src="{% static 'app/assets/img/icon/wcuIcon2_1.png' %}" alt="icon">
+                                    </div>
+
+                                </div>
+                                <div class="item">
+                                    <h6 class="title">Buffet Service</h6>
+                                    <p class="text">It is a long established fact that a reader will be distracted the
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="fancy-box style6">
+                                <div class="item">
+                                    <div class="icon">
+                                        <img src="{% static 'app/assets/img/icon/wcuIcon2_2.png' %}" alt="icon">
+                                    </div>
+
+                                </div>
+                                <div class="item">
+                                    <h6 class="title">Cook & Sarve Faster</h6>
+                                    <p class="text">It is a long established fact that a reader will be distracted the
+                                    </p>
+                                </div>
+                            </div>
+                            <a href="menu.html" class="theme-btn style4">
+                                ORDER NOW <i class="fa-sharp fa-regular fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="offer-section section-padding fix bg-color2">
+        <div class="offer-shape">
+            <img src="{% static 'app/assets/img/offer/offer-shape.png' %}" alt="img">
+        </div>
+        <div class="offer-wrapper3">
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-lg-6">
+                        <div class="offer-card style1 rounded-5 wow fadeInUp" data-wow-delay="0.5s"
+                             style="background-image: url({% static 'app/assets/img/bg/offerBG2_2.jpg' %});">
+                            <div class="offer-content">
+                                <h6>teňňeleri jemle</h6>
+                                <h3>Her tagamdan pul gazan</h3>
+                                <a href="menu.html" class="theme-btn style4">
+                                    Tanyş bolyň <i class="fa-sharp fa-regular fa-arrow-right"></i>
+                                </a>
+                            </div>
+                            <div class="offer-thumb">
+                                <img class="thumbImg" style="height: 80%" src="{% static 'app/assets/img/offer/offerThumb1_3.png' %}" alt="thumb">
+                                <div class="shape float-bob-x"><img src="{% static 'app/assets/img/shape/offerShape1_4.png' %}"
+                                                                    alt="shape"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="offer-card style1  rounded-5  wow fadeInUp" data-wow-delay="0.7s"
+                             style="background-image: url({% static 'app/assets/img/bg/offerBG2_3.jpg' %});">
+                            <div class="offer-content">
+                                <h6 class="text-white">Sargytlarymyň taryhy</h6>
+                                <h3>Sargytmlarym</h3>
+                                <a href="{% url 'App:order_history' %}" class="theme-btn style4">
+                                    Gör
+                                    <i class="fa-sharp fa-regular fa-arrow-right"></i>
+                                </a>
+                            </div>
+                            <div class="offer-thumb">
+                                <img class="thumbImg" src="{% static 'app/assets/img/offer/offerThumb1_1.png' %}" alt="thumb">
+                                <div class="shape float-bob-x"><img src="{% static 'app/assets/img/shape/offerShape1_4.png' %}"
+                                                                    alt="shape"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="cta-section style-white fix">
+        <div class="cta-wrapper style3">
+            <div class="container">
+                <div class="cta-wrap  section-padding pt-xl-0 pb-xl-0 style3">
+                    <div class="shape1 float-bob-x d-none d-xxl-block"><img
+                            src="{% static 'app/assets/img/shape/ctaShape3_1.png' %}"
+                            alt="shape"></div>
+                    <div class="shape2 float-bob-y d-none d-xxl-block"><img
+                            src="{% static 'app/assets/img/shape/ctaShape3_2.png' %}"
+                            alt="shape"></div>
+                    <div class="shape3 float-bob-y d-none d-xxl-block"><img
+                            src="{% static 'app/assets/img/shape/ctaShape3_3.png' %}"
+                            alt="shape"></div>
+                    <div class="shape4 d-none d-xxl-block"><img
+                            src="{% static 'app/assets/img/shape/ctaShape3_4.png' %}" alt="shape">
+                    </div>
+                    <div class="shape5 d-none d-xxl-block"><img
+                            src="{% static 'app/assets/img/shape/ctaShape3_5.png' %}" alt="shape">
+                    </div>
+                    <div class="shape6 d-none d-xxl-block"><img class="cir36"
+                                                                src="{% static 'app/assets/img/shape/ctaShape3_6.png' %}"
+                                                                alt="shape"></div>
+                    <div class="shape7 d-none d-xxl-block"><img
+                            src="{% static 'app/assets/img/shape/ctaShape3_7.png' %}" alt="shape">
+                    </div>
+                    <div class="row g-5">
+                        <div class="col-xl-6  d-flex align-items-center justify-content-center order-2 order-xl-1">
+                            <div class="cta-content">
+                                <h6 class="text-white wow fadeInUp" data-wow-delay="0.5s"><img class="me-1"
+                                                                                               src="{% static 'app/assets/img/icon/titleIconWhite.svg' %}"
+                                                                                               alt="icon">Ýükläp alyň<img
+                                        class="ms-1" src="{% static 'app/assets/img/icon/titleIconWhite.svg' %}"
+                                        alt="icon"></h6>
+                                <h3 class="wow fadeInUp" data-wow-delay="0.7s">Şü gün ýükläp alyň!</h3>
+                                <div class="btn-wrapper d-md-flex align-items-center gap-2">
+                                    <div class="btns">
+                                        <a class="apple-btn wow fadeInUp" data-wow-delay="0.9s"
+                                           href="https://www.apple.com/store">
+                                            <div class="d-flex align-items-center   gap-2">
+                                                <img src="{% static 'app/assets/img/icon/appleStore.svg' %}" alt="icon">
+                                                <div>
+                                                    <span>Alyň</span>
+                                                    <h6>App store</h6>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="btns">
+                                        <a class="google-btn wow fadeInUp" data-wow-delay="0.9s"
+                                           href="https://play.google.com/store/">
+                                            <div class="d-flex align-items-center  gap-2">
+                                                <img src="{% static 'app/assets/img/icon/playStore.svg' %}" alt="icon">
+                                                <div>
+                                                    <span>Alyň</span>
+                                                    <h6>Google play</h6>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div
+                                class="col-xl-6 d-flex align-items-center justify-content-center justify-content-xl-start order-1 order-xl-2">
+                            <div class="cta-thumb">
+                                <img class="img-fluid float-bob-x"
+                                     src="{% static 'app/assets/img/cta/ctaThumb3_1.png' %}" alt="thumb">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
