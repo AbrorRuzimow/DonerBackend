@@ -1,0 +1,103 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block title %}{{ dashboard_title }}{% endblock %}
+
+{% block content %}
+<h1 style="margin-bottom: 10px;">📊 {{ dashboard_title }}</h1>
+
+<div style="display:flex; gap:20px; flex-wrap:wrap;">
+  <div style="flex:1; min-width:320px;">
+    <div style="background:#fff; padding:16px; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+      <h3>Kunlik orderlar (oxirgi 7 kun)</h3>
+      <canvas id="ordersChart" height="160"></canvas>
+    </div>
+  </div>
+
+  <div style="flex:1; min-width:320px;">
+    <div style="background:#fff; padding:16px; border-radius:8px; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+      <h3>Eng ko‘p sotilgan mahsulotlar (Top 5)</h3>
+      <canvas id="topProductsChart" height="160"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- Statistik cards -->
+<div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
+  <div style="background:#fff; padding:12px; border-radius:8px; min-width:200px;">
+    <h4>Jami orderlar (7 kun)</h4>
+    <p style="font-size:20px; font-weight:600;">
+      {{ orders_daily }}
+    </p>
+  </div>
+
+  <div style="background:#fff; padding:12px; border-radius:8px; min-width:200px;">
+    <h4>Eng ko‘p sotilgan</h4>
+    <p style="font-size:16px;">
+      {% if top_products %}
+        {{ top_products.0.name }} — {{ top_products.0.total }}
+      {% else %}
+        Hozircha yo'q
+      {% endif %}
+    </p>
+  </div>
+</div>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  // Orders daily data from context
+  const ordersDaily = {{ orders_daily|safe }};
+  const orderLabels = ordersDaily.map(r => r.day);
+  const orderData = ordersDaily.map(r => r.total);
+
+  const ctxOrders = document.getElementById('ordersChart').getContext('2d');
+  new Chart(ctxOrders, {
+    type: 'line',
+    data: {
+      labels: orderLabels,
+      datasets: [{
+        label: 'Orderlar soni',
+        data: orderData,
+        tension: 0.3,
+        borderWidth: 2,
+        fill: true,
+        backgroundColor: 'rgba(54,162,235,0.08)',
+        borderColor: 'rgba(54,162,235,1)',
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: true } },
+      scales: {
+        y: { beginAtZero: true, precision:0 }
+      }
+    }
+  });
+
+  // Top products chart
+  const topProducts = {{ top_products|safe }};
+  const prodLabels = topProducts.map(p => p.name);
+  const prodData = topProducts.map(p => p.total);
+
+  const ctxTop = document.getElementById('topProductsChart').getContext('2d');
+  new Chart(ctxTop, {
+    type: 'bar',
+    data: {
+      labels: prodLabels,
+      datasets: [{
+        label: 'Sotilgan soni',
+        data: prodData,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, precision:0 } }
+    }
+  });
+</script>
+{% endblock %}

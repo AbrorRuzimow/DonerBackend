@@ -1,0 +1,378 @@
+{% extends 'administrator/base/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="d-flex flex-column flex-column-fluid">
+        <div id="kt_app_toolbar" class="app-toolbar pt-6 pb-2">
+            <div id="kt_app_toolbar_container" class="app-container  container-fluid d-flex align-items-stretch ">
+                <div class="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
+                    <div class="page-title d-flex flex-column justify-content-center gap-1 me-3">
+                        <h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bold fs-3 m-0">
+                            Önüm üýtgetmek
+                        </h1>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 gap-lg-3">
+                        <a href="{% url 'Administrator:product_list' %}" class="btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold">
+                            Yza
+                        </a>
+                        <button type="button" onclick="submitData()" class="btn btn-flex btn-primary h-40px fs-7 fw-bold" id="submit_btn">
+                            Ýatda sakla
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% csrf_token %}
+        <div id="kt_app_content" class="app-content  flex-column-fluid ">
+            <div id="kt_app_content_container" class="app-container  container-fluid ">
+                <form id="kt_ecommerce_add_product_form" class="form d-flex flex-column flex-lg-row">
+                    <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
+                        <div class="card card-flush py-4">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>Ýagdaýy</h2>
+                                </div>
+                                <div class="card-toolbar">
+                                    <div class="rounded-circle bg-warning w-15px h-15px" id="kt_ecommerce_add_product_status"></div>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <select class="form-select mb-2" data-control="select2" data-hide-search="true" name="status" data-placeholder="Ýagdaýy saýlaň" id="kt_ecommerce_add_product_status_select" required>
+                                    <option></option>
+                                    {% for status in status_list %}
+                                        <option value="{{ status.0 }}" {% if model.status == status.0 %}selected{% endif %}>{{ status.1 }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="text-muted fs-7">Önümiň işjeňlik ýagdaýyny saýlaň</div>
+                            </div>
+                        </div>
+                        <div class="card card-flush py-4">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h2>Surat</h2>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="fv-row mb-2">
+                                    <label for="images" class="dropzone w-100">
+                                        <i class="fas fa-image text-primary fs-3x"></i>
+                                        <div class="ms-4">
+                                            <h3 class="fs-5 fw-bold text-gray-900 mb-1">Suratlary giriziň.</h3>
+                                            <input type="file" accept="image/*" id="images" name="images" multiple style="display: none">
+                                            <div id="image_length" class="text-muted fs-7"></div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                        <div class="tab-content">
+                            <div class="d-flex flex-column gap-7 gap-lg-10">
+                                <div class="card card-flush py-4">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h2>Önüm barada</h2>
+                                        </div>
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="mb-10 fv-row">
+                                            <label class="required form-label">Ady</label>
+                                            <input type="text" name="name" id="name" class="form-control mb-2" placeholder="Önümiň ady" value="{{ model.name }}" required/>
+                                        </div>
+                                        <div>
+                                            <label class="form-label">Önüm barada</label>
+                                            <textarea name="description" id="description" class="form-control" placeholder="Önüm barada maglumaty giriziň">{{ model.description }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card card-flush py-4">
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            <h2>Bahasy</h2>
+                                        </div>
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="mb-10 fv-row">
+                                            <label class="required form-label">Önümiň bahasy</label>
+                                            <input type="number" id="price" name="price" step="0.01" onblur="this.toFixed(2)" value="{{ model.price|title }}" class="form-control mb-2" required placeholder="Önümiň bahasy"/>
+                                        </div>
+                                        <div class="fv-row mb-10">
+                                            <label class="fs-6 fw-semibold mb-2">
+                                                Bahanyň görnüşi
+                                                <span class="ms-1" data-bs-toggle="tooltip" title="Şu önümiň bahasyny giriziň">
+                                                    <i class="fas fa-info-circle text-gray-500 fs-6"></i>
+                                                </span>
+                                            </label>
+                                            <div class="row row-cols-1 row-cols-md-3 row-cols-lg-1 row-cols-xl-3 g-9" data-kt-buttons="true" data-kt-buttons-target="[data-kt-button='true']">
+                                                <div class="col">
+                                                    <label class="btn btn-outline btn-outline-dashed btn-active-light-primary {% if model.percentage == 0 and model.expensive_price == 0 %}active{% endif %} d-flex text-start p-6" data-kt-button="true">
+                                                            <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
+                                                                <input class="form-check-input" type="radio" id="discount_option" name="discount_option" value="1" {% if model.percentage == 0 and model.expensive_price == 0 %}checked{% endif %}/>
+                                                            </span>
+                                                        <span class="ms-5">
+                                                                <span class="fs-4 fw-bold text-gray-800 d-block">Öz bahasy</span>
+                                                            </span>
+                                                    </label>
+                                                </div>
+                                                <div class="col">
+                                                    <label class="btn btn-outline btn-outline-dashed btn-active-light-primary  {% if model.percentage != 0 and model.expensive_price == 0 %}active{% endif %} d-flex text-start p-6" data-kt-button="true">
+                                                            <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
+                                                            <input class="form-check-input" type="radio" id="discount_option" name="discount_option" value="2" {% if model.percentage != 0 and model.expensive_price == 0 %}checked{% endif %}/>
+                                                    </span>
+                                                        <span class="ms-5">
+                                                                <span class="fs-4 fw-bold text-gray-800 d-block">Arzanladyş göterim (%)</span>
+                                                            </span>
+                                                    </label>
+                                                </div>
+                                                <div class="col">
+                                                    <label class="btn btn-outline btn-outline-dashed btn-active-light-primary  {% if model.percentage == 0 and model.expensive_price != 0 %}active{% endif %} d-flex text-start p-6" data-kt-button="true">
+                                                            <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
+                                                                <input class="form-check-input" type="radio" id="discount_option" name="discount_option" value="3" {% if model.percentage == 0 and model.expensive_price != 0 %}checked{% endif %}/>
+                                                            </span>
+                                                        <span class="ms-5">
+                                                                <span class="fs-4 fw-bold text-gray-800 d-block">Bahadan arzanlatmak</span>
+                                                            </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="{% if model.percentage != 0 and model.expensive_price == 0 %}active{% else %}d-none{% endif %} mb-10 fv-row" id="kt_ecommerce_add_product_discount_percentage">
+                                            <label class="form-label">Arzanladyş göterim bahalary giriziň</label>
+                                            <div class="d-flex flex-column text-center mb-5">
+                                                <div class="d-flex align-items-start justify-content-center mb-7">
+                                                    <span class="fw-bold fs-3x" id="kt_ecommerce_add_product_discount_label">{{ model.percentage }}</span>
+                                                    <span class="fw-bold fs-4 mt-1 ms-2">%</span>
+                                                </div>
+                                                <input type="hidden" id="percentage_input" value="{{ model.percentage }}" name="percentage">
+                                                <div id="kt_ecommerce_add_product_discount_slider" onclick="percentage()" class="noUi-sm"></div>
+                                            </div>
+                                            <div class="text-muted fs-7">Göterimiň mukdaryny giriziň.</div>
+                                        </div>
+                                        <div class="{% if model.percentage == 0 and model.expensive_price != 0 %}active{% else %}d-none{% endif %} mb-10 fv-row" id="kt_ecommerce_add_product_discount_fixed">
+                                            <label class="form-label">Arzan bahasyny giriziň</label>
+                                            <input type="number" step="0.01" id="expensive_price" name="expensive_price" value="{{ model.expensive_price|title }}" class="form-control mb-2" placeholder="Bahasy"/>
+                                            <div class="text-muted fs-7">Önümiň arzan bahasy</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+        "use strict";
+        var KTAppEcommerceSaveProduct = function () {
+            const e = () => {
+                $("#kt_ecommerce_add_product_options").repeater({
+                    initEmpty: !1, defaultValues: {"text-input": "foo"}, show: function () {
+                        $(this).slideDown(), t()
+                    }, hide: function (e) {
+                        $(this).slideUp(e)
+                    }
+                })
+            }, t = () => {
+                document.querySelectorAll('[data-kt-ecommerce-catalog-add-product="product_option"]').forEach((e => {
+                    $(e).hasClass("select2-hidden-accessible") || $(e).select2({minimumResultsForSearch: -1})
+                }))
+            };
+            return {
+                init: function () {
+                    var o, a;
+                    ["#kt_ecommerce_add_product_description", "#kt_ecommerce_add_product_meta_description"].forEach((e => {
+                        let t = document.querySelector(e);
+                        t && (t = new Quill(e, {modules: {toolbar: [[{header: [1, 2, !1]}], ["bold", "italic", "underline"], ["", "code-block"]]}, placeholder: "Type your text here...", theme: "snow"}))
+                    })), ["#kt_ecommerce_add_product_category", "#kt_ecommerce_add_product_tags"].forEach((e => {
+                        const t = document.querySelector(e);
+                        t && new Tagify(t, {whitelist: ["new", "trending", "sale", "discounted", "selling fast", "last 10"], dropdown: {maxItems: 20, classname: "tagify__inline__suggestions", enabled: 0, closeOnSelect: !1}})
+                    })), o = document.querySelector("#kt_ecommerce_add_product_discount_slider"), a = document.querySelector("#kt_ecommerce_add_product_discount_label"), noUiSlider.create(o, {start: [{{ model.percentage }}], connect: !0, range: {min: 0, max: 100}}), o.noUiSlider.on("update", (function (e, t) {
+                        a.innerHTML = Math.round(e[t]), t && (a.innerHTML = Math.round(e[t]))
+                    })), t(), (() => {
+                        const e = document.getElementById("kt_ecommerce_add_product_status"), t = document.getElementById("kt_ecommerce_add_product_status_select"), o = ["bg-success", "bg-warning", "bg-danger"];
+                        $(t).on("change", (function (t) {
+                            switch (t.target.value) {
+                                case"1":
+                                    e.classList.remove(...o), e.classList.add("bg-success"), c();
+                                    break;
+                                case"2":
+                                    e.classList.remove(...o), e.classList.add("bg-danger"), c();
+                                    break;
+                                case"3":
+                                    e.classList.remove(...o), e.classList.add("bg-warning"), d();
+                                    break;
+                                case"4":
+                                    e.classList.remove(...o), e.classList.add("bg-primary"), c()
+                            }
+                        }));
+                        const a = document.getElementById("kt_ecommerce_add_product_status_datepicker");
+                        $("#kt_ecommerce_add_product_status_datepicker").flatpickr({enableTime: !0, dateFormat: "Y-m-d H:i"});
+                        const d = () => {
+                            a.parentNode.classList.remove("d-none")
+                        }, c = () => {
+                            a.parentNode.classList.add("d-none")
+                        }
+                    })(), (() => {
+                        const e = document.querySelectorAll('[name="method"][type="radio"]'), t = document.querySelector('[data-kt-ecommerce-catalog-add-category="auto-options"]');
+                        e.forEach((e => {
+                            e.addEventListener("change", (e => {
+                                "1" === e.target.value ? t.classList.remove("d-none") : t.classList.add("d-none")
+                            }))
+                        }))
+                    })(), (() => {
+                        const e = document.querySelectorAll('input[name="discount_option"]'), t = document.getElementById("kt_ecommerce_add_product_discount_percentage"), o = document.getElementById("kt_ecommerce_add_product_discount_fixed");
+                        e.forEach((e => {
+                            e.addEventListener("change", (e => {
+                                switch (e.target.value) {
+                                    case"2":
+                                        t.classList.remove("d-none"), o.classList.add("d-none");
+                                        break;
+                                    case"3":
+                                        t.classList.add("d-none"), o.classList.remove("d-none");
+                                        break;
+                                    default:
+                                        t.classList.add("d-none"), o.classList.add("d-none")
+                                }
+                            }))
+                        }))
+                    })(), (() => {
+                        const e = document.getElementById("kt_ecommerce_add_product_shipping_checkbox"), t = document.getElementById("kt_ecommerce_add_product_shipping");
+                        e.addEventListener("change", (e => {
+                            e.target.checked ? t.classList.remove("d-none") : t.classList.add("d-none")
+                        }))
+                    })(), (() => {
+                        let e;
+                        const t = document.getElementById("kt_ecommerce_add_product_form"), o = document.getElementById("kt_ecommerce_add_product_submit");
+                        e = FormValidation.formValidation(t, {
+                            fields: {
+                                product_name: {validators: {notEmpty: {message: "Product name is required"}}},
+                                sku: {validators: {notEmpty: {message: "SKU is required"}}},
+                                barcode: {validators: {notEmpty: {message: "Product barcode is required"}}},
+                                shelf: {validators: {notEmpty: {message: "Shelf quantity is required"}}},
+                                price: {validators: {notEmpty: {message: "Product base price is required"}}},
+                                tax: {validators: {notEmpty: {message: "Product tax class is required"}}}
+                            }, plugins: {trigger: new FormValidation.plugins.Trigger, bootstrap: new FormValidation.plugins.Bootstrap5({rowSelector: ".fv-row", eleInvalidClass: "", eleValidClass: ""})}
+                        }), o.addEventListener("click", (a => {
+                            a.preventDefault(), e && e.validate().then((function (e) {
+                                console.log("validated!"), "Valid" == e ? (o.setAttribute("data-kt-indicator", "on"), o.disabled = !0, setTimeout((function () {
+                                    o.removeAttribute("data-kt-indicator"), Swal.fire({text: "Form has been successfully submitted!", icon: "success", buttonsStyling: !1, confirmButtonText: "Ok, got it!", customClass: {confirmButton: "btn btn-primary"}}).then((function (e) {
+                                        e.isConfirmed && (o.disabled = !1, window.location = t.getAttribute("data-kt-redirect"))
+                                    }))
+                                }), 2e3)) : Swal.fire({
+                                    html: "Sorry, looks like there are some errors detected, please try again. <br/><br/>Please note that there may be errors in the <strong>General</strong> or <strong>Advanced</strong> tabs",
+                                    icon: "error",
+                                    buttonsStyling: !1,
+                                    confirmButtonText: "Ok, got it!",
+                                    customClass: {confirmButton: "btn btn-primary"}
+                                })
+                            }))
+                        }))
+                    })()
+                }
+            }
+        }();
+        KTUtil.onDOMContentLoaded((function () {
+            KTAppEcommerceSaveProduct.init()
+        }));
+    </script>
+    <script>
+        const btn = document.getElementById('submit_btn')
+        const nameInput = document.getElementById('name');
+        const priceInput = document.getElementById('price');
+
+        function checkInputs() {
+            const nameFilled = nameInput.value.trim() !== '';
+            const priceFilled = priceInput.value.trim() !== '';
+            console.log(nameFilled)
+            console.log(priceFilled)
+            btn.disabled = !(nameFilled && priceFilled);
+        }
+
+        nameInput.addEventListener('input', checkInputs);
+        priceInput.addEventListener('input', checkInputs);
+
+        const price = document.querySelector('#price')
+        price.addEventListener('change', e => {
+            e.currentTarget.value = parseFloat(e.currentTarget.value).toFixed(2)
+        })
+        const expensive_price = document.querySelector('#expensive_price')
+        expensive_price.addEventListener('change', e => {
+            e.currentTarget.value = parseFloat(e.currentTarget.value).toFixed(2)
+        })
+
+        function percentage() {
+            const span = document.getElementById('kt_ecommerce_add_product_discount_label');
+            const value = span.textContent;
+            document.getElementById('percentage_input').value = value
+        }
+
+        function submitData() {
+            const radios = document.getElementsByName('discount_option');
+            let selectedValue = null;
+
+            for (const radio of radios) {
+                if (radio.checked) {
+                    selectedValue = radio.value;
+                    break;
+                }
+            }
+
+            const name = document.getElementById('name').value;
+            const price = document.getElementById('price').value;
+            const status = document.getElementById('kt_ecommerce_add_product_status_select').value;
+            const description = document.getElementById('description').value;
+            const percentage_input = document.getElementById('percentage_input').value;
+            const expensive_price = document.getElementById('expensive_price').value;
+            const images = document.getElementById('images').files;
+
+
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('price', price);
+            formData.append('status', status);
+            formData.append('description', description);
+            formData.append('discount_option', selectedValue);
+            formData.append('percentage', percentage_input);
+            formData.append('expensive_price', expensive_price);
+            const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+            for (let i = 0; i < images.length; i++) {
+                formData.append('images', images[i]);
+            }
+            fetch('{% url 'Administrator:product_update' model.pk %}', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                },
+                body: formData,
+            }).then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    throw new Error('' + response.status);
+                }
+            })
+                .then(data => {
+                    toastr.success('Maglumat üýtgedildi');
+                    document.getElementById('name').value = null;
+                    document.getElementById('price').value = null;
+                    document.getElementById('kt_ecommerce_add_product_status_select').selectedIndex = 0;
+                    document.getElementById('description').value = null;
+                    document.getElementById('percentage_input').value = null;
+                    document.getElementById('expensive_price').value = null;
+                    document.getElementById('images').files = null;
+                    setTimeout(() => {
+                        window.location.href = '{% url 'Administrator:product_list' %}';
+                    }, 500);
+
+                })
+                .catch(error => {
+                    console.log(error)
+                    toastr.error('Ýalňyşlyk ýüze çykdy');
+                });
+        }
+    </script>
+    <script src="{% static 'administrator/assets/js/custom/formrepeater/formrepeater.bundle.js' %}"></script>
+{% endblock %}

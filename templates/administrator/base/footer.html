@@ -1,0 +1,21 @@
+<div id="dms_footer" class="app-footer">
+    <div class="app-container  container-fluid d-flex flex-column flex-md-row flex-center flex-md-stack py-3 ">
+        <div class="text-dark order-2 order-md-1">
+            <span class="text-muted fw-semibold me-1 cursor-pointer" id="footer_year"> </span>
+            <a class="text-gray-800 text-hover-primary" style="cursor:pointer;">Ähli hukular goralan</a>
+        </div>
+        <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
+            <li class="menu-item"><a class="menu-link px-2" style="cursor: pointer;">Doner Management Systerm</a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    const d = new Date();
+    let year = d.getFullYear();
+    let year_html = document.getElementById('footer_year')
+    if (year === 2025) {
+        year_html.innerHTML = `${year} &copy;`
+    } else if (year > 2025) {
+        year_html.innerHTML = `2025-${year} &copy;`
+    }
+</script>

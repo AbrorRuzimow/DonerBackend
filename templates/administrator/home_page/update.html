@@ -1,0 +1,156 @@
+{% extends 'administrator/base/base.html' %}
+{% block content %}
+    <form method="post" class="app-main flex-column flex-row-fluid" enctype="multipart/form-data" id="dms_main">
+        <div class="d-flex flex-column flex-column-fluid">
+            {% csrf_token %}
+            <div id="dms_toolbar" class="app-toolbar  pt-6 pb-2">
+                <div id="dms_toolbar_container" class="app-container container-fluid d-flex align-items-stretch ">
+                    <div class="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
+                        <div class="page-title d-flex flex-column justify-content-center gap-1 me-3">
+                            <h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bold fs-3 m-0">
+                                Baş sahypa üýtgetmek
+                            </h1>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 gap-lg-3">
+                            <a href="{% url 'Administrator:warehouse_name_list' %}" class="btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold">
+                                Yza
+                            </a>
+                            <button type="submit" class="btn btn-flex btn-primary h-40px fs-7 fw-bold">
+                                Ýatda sakla
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="dms_content" class="app-content  flex-column-fluid">
+                <div id="dms_content_container" class="app-container container-fluid">
+                    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+                        <div class="d-flex flex-column gap-7 gap-lg-10">
+                            <div class="card card-flush py-4">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2>Maglumaty üýtgetmek</h2>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="mb-10 fv-row">
+                                        <label for="text1" class="required form-label">Esasy at</label>
+                                        <input id="text1" type="text" name="text1" class="form-control mb-2" placeholder="Dolduryň" value="{{ model.text1 }}" required/>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="mb-10 fv-row">
+                                        <label for="text2" class="required form-label">Text 2</label>
+                                        <input id="text2" type="text" name="text2" class="form-control mb-2" placeholder="Dolduryň" value="{{ model.text2 }}" required/>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="mb-10 fv-row">
+                                        <label for="text3" class="required form-label">Text 3</label>
+                                        <input id="text3" type="text" name="text3" class="form-control mb-2" placeholder="Dolduryň" value="{{ model.text3 }}" required/>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="mb-10 fv-row">
+                                        <label for="text4" class="required form-label">Text 4</label>
+                                        <input id="text4" type="text" name="text4" class="form-control mb-2" placeholder="Dolduryň" value="{{ model.text4 }}" required/>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="mb-10 fv-row">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h2>Surat 1</h2>
+                                            </div>
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="fv-row mb-2">
+                                                <label for="image1" class="dropzone w-100">
+                                                    <i class="fas fa-image text-primary fs-3x"></i>
+                                                    <div class="ms-4">
+                                                        <h3 class="fs-5 fw-bold text-gray-900 mb-1">Suratlary giriziň.</h3>
+                                                        <input type="file" accept="image/*" id="image1" name="image1" style="display: none">
+                                                        <div id="image_length" class="text-muted fs-7"></div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="mb-10 fv-row">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h2>Surat 2</h2>
+                                            </div>
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="fv-row mb-2">
+                                                <label for="image2" class="dropzone w-100">
+                                                    <i class="fas fa-image text-primary fs-3x"></i>
+                                                    <div class="ms-4">
+                                                        <h3 class="fs-5 fw-bold text-gray-900 mb-1">Suratlary giriziň.</h3>
+                                                        <input type="file" accept="image/*" id="image2" name="image2" style="display: none">
+                                                        <div id="image_length" class="text-muted fs-7"></div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="mb-10 fv-row">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h2>Surat 3</h2>
+                                            </div>
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="fv-row mb-2">
+                                                <label for="image3" class="dropzone w-100">
+                                                    <i class="fas fa-image text-primary fs-3x"></i>
+                                                    <div class="ms-4">
+                                                        <h3 class="fs-5 fw-bold text-gray-900 mb-1">Suratlary giriziň.</h3>
+                                                        <input type="file" accept="image/*" id="image3" name="image3" style="display: none">
+                                                        <div id="image_length" class="text-muted fs-7"></div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="mb-10 fv-row">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h2>Surat 4</h2>
+                                            </div>
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="fv-row mb-2">
+                                                <label for="image4" class="dropzone w-100">
+                                                    <i class="fas fa-image text-primary fs-3x"></i>
+                                                    <div class="ms-4">
+                                                        <h3 class="fs-5 fw-bold text-gray-900 mb-1">Suratlary giriziň.</h3>
+                                                        <input type="file" accept="image/*" id="image4" name="image4" style="display: none">
+                                                        <div id="image_length" class="text-muted fs-7"></div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="mb-10 fv-row">
+                                        <label for="address" class="required form-label">Salgy</label>
+                                        <input id="text4" type="text" name="address" class="form-control mb-2" placeholder="Dolduryň" value="{{ model.address }}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
